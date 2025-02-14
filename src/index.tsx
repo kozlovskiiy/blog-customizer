@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import { StrictMode, CSSProperties } from 'react';
+import { StrictMode, CSSProperties, useState } from 'react';
 import clsx from 'clsx';
 
 import { Article } from './components/article/Article';
@@ -9,10 +9,20 @@ import { defaultArticleState } from './constants/articleProps';
 import './styles/index.scss';
 import styles from './styles/index.module.scss';
 
+import { fontFamilyOptions } from './constants/articleProps';
+import { OptionType } from './constants/articleProps';
+
+
 const domNode = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(domNode);
 
+
+
 const App = () => {
+
+	const [visible, setVisible] = useState(false);
+	const [font, setFont] = useState<OptionType | null>(fontFamilyOptions[0]);
+
 	return (
 		<main
 			className={clsx(styles.main)}
@@ -25,7 +35,7 @@ const App = () => {
 					'--bg-color': defaultArticleState.backgroundColor.value,
 				} as CSSProperties
 			}>
-			<ArticleParamsForm />
+			<ArticleParamsForm onClick={() => setVisible(!visible)} isOpen={visible} font={font} setFont={setFont}  />
 			<Article />
 		</main>
 	);
