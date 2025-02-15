@@ -40,6 +40,7 @@ const App = () => {
       contentWidth,
     });
   };
+  console.log(contentWidth)
 
 
 	const handleReset = () => {
