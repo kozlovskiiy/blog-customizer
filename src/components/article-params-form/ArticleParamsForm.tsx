@@ -11,12 +11,12 @@ import styles from "./ArticleParamsForm.module.scss";
 
 export const ArticleParamsForm: React.FC<{ setArticleState: (state: ArticleStateType) => void }> = ({ setArticleState }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [font, setFont] = useState<OptionType>(fontFamilyOptions[0]);
-  const [fontSize, setFontSize] = useState<OptionType>(fontSizeOptions[0]);
-  const [fontColor, setFontColor] = useState<OptionType>(fontColors[0]);
-  const [backgroundColor, setBackgroundColor] = useState<OptionType>(backgroundColors[0]);
-  const [contentWidth, setContentWidth] = useState<OptionType>(contentWidthArr[0]);
-
+  const [font, setFont] = useState<OptionType>(defaultArticleState.fontFamilyOption);
+  const [fontSize, setFontSize] = useState<OptionType>(defaultArticleState.fontSizeOption);
+  const [fontColor, setFontColor] = useState<OptionType>(defaultArticleState.fontColor);
+  const [backgroundColor, setBackgroundColor] = useState<OptionType>(defaultArticleState.backgroundColor);
+  const [contentWidth, setContentWidth] = useState<OptionType>(defaultArticleState.contentWidth);
+  
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     setArticleState({
