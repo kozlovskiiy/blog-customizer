@@ -40,21 +40,21 @@ export const ArticleParamsForm: React.FC<{ setArticleState: (state: ArticleState
 
   const sidebarRef = useRef<HTMLDivElement>(null);
 
-  const handleClickOutside = (event: MouseEvent) => {
-    if (sidebarRef.current && !sidebarRef.current.contains(event.target as HTMLElement)) {
-      setIsSidebarOpen(false);
-    }
-  };
-
   useEffect(() => {
-    if (isSidebarOpen) {
-      document.addEventListener("click", handleClickOutside);
-      return () => {
-        document.removeEventListener("click", handleClickOutside);
-      };
-    }
-  }, [isSidebarOpen, handleClickOutside]);
-    
+    if (!isSidebarOpen) return;
+  
+    const handleClickOutside = (event: MouseEvent) => {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target as HTMLElement)) {
+        setIsSidebarOpen(false);
+      }
+    };
+  
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [isSidebarOpen]);
+
   return (
     <>
       <ArrowButton isOpen={isSidebarOpen} onClick={(e) => { setIsSidebarOpen(!isSidebarOpen), e.stopPropagation() }} />
