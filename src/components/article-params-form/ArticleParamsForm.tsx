@@ -60,7 +60,7 @@ export const ArticleParamsForm: React.FC<{ setArticleState: (state: ArticleState
       <ArrowButton isOpen={isSidebarOpen} onClick={(e) => { setIsSidebarOpen(!isSidebarOpen), e.stopPropagation() }} />
       <aside ref={sidebarRef} className={clsx(styles.container, { [styles.container_open]: isSidebarOpen })} onClick={(e) => e.stopPropagation()} >
       <form className={styles.form} onSubmit={handleSubmit} onReset={handleReset}>
-          <Text children="Задайте параметры" weight={800} size={31} family="open-sans" uppercase />
+          <Text children="Задайте параметры" weight={800} size={31} family="open-sans" uppercase as='h2' />
           <Select title="Шрифт" selected={font} options={fontFamilyOptions} onChange={setFont} />
           <RadioGroup title="Размер шрифта" name="font-size" options={fontSizeOptions} selected={fontSize} onChange={setFontSize} />
           <Select title="Цвет шрифта" selected={fontColor} options={fontColors} onChange={setFontColor} />
