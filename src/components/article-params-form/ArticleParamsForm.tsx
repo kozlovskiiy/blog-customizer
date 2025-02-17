@@ -60,38 +60,36 @@ export const ArticleParamsForm: React.FC<{
 
 	const sidebarRef = useRef<HTMLDivElement>(null);
 
-	useEffect(() => {
-		if (!isSidebarOpen) return;
-
-		const handleClickOutside = (event: MouseEvent) => {
-			if (
-				sidebarRef.current &&
-				!sidebarRef.current.contains(event.target as HTMLElement)
-			) {
-				setIsSidebarOpen(false);
-			}
-		};
-
-		document.addEventListener('click', handleClickOutside);
-		return () => {
-			document.removeEventListener('click', handleClickOutside);
-		};
-	}, [isSidebarOpen]);
+  useEffect(() => {
+    if (!isSidebarOpen) return;
+  
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        sidebarRef.current &&
+        !sidebarRef.current.contains(event.target as HTMLElement)
+      ) {
+        setIsSidebarOpen(false);
+      }
+    };
+  
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isSidebarOpen]);
 
 	return (
 		<>
 			<ArrowButton
 				isOpen={isSidebarOpen}
-				onClick={(e) => {
-					setIsSidebarOpen(!isSidebarOpen), e.stopPropagation();
-				}}
+				onClick={() =>
+					setIsSidebarOpen(!isSidebarOpen)}
 			/>
 			<aside
 				ref={sidebarRef}
 				className={clsx(styles.container, {
 					[styles.container_open]: isSidebarOpen,
-				})}
-				onClick={(e) => e.stopPropagation()}>
+				})}>
 				<form
 					className={styles.form}
 					onSubmit={handleSubmit}
